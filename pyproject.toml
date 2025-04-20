@@ -1,6 +1,6 @@
 [project]
 name = "moodemoji"
-version = "0.1.1"
+version = "v0.1.1"
 description = "Map moods to emojis 😎"
 authors = [
   { name = "Vedanta Barooah", email = "barooah.io@gmail.com" }
