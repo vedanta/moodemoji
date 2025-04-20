@@ -1,6 +1,6 @@
 [project]
 name = "moodemoji"
-version = "0.1.0"
+version = "0.1.1"
 description = "Map moods to emojis 😎"
 authors = [
   { name = "Vedanta Barooah", email = "barooah.io@gmail.com" }
@@ -10,7 +10,7 @@ requires-python = ">=3.7"
 license = { text = "MIT" }
 
 [project.urls]
-Homepage = "https://github.com/yourusername/moodemoji"
+Homepage = "https://github.com/vedanta/moodemoji"
 
 [build-system]
 requires = ["setuptools>=61.0"]
