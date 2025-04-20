@@ -1,0 +1,58 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+*.pyd
+*.pyo
+
+# C extensions
+*.c
+*.cpp
+
+# Distribution / packaging
+*.egg-info/
+*.egg
+dist/
+build/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Test cache
+.cache/
+pytest_cache/
+
+# VS Code settings
+.vscode/
+
+# Jupyter Notebook checkpoints (if you add a notebook later)
+.ipynb_checkpoints/
+
+# Environment files
+.env
+.venv/
+env/
+venv/
+ENV/
+.moodemoji-env/
+
+# macOS files
+.DS_Store
+
+# MyPy / Pyright
+.mypy_cache/
+.pyright/
+
+# Coverage reports
+htmlcov/
+coverage.xml
+*.cover
+*.py,cover
+
+# Pytest output
+.tox/
+.nox/
+
+# Wheel build artifacts
+*.whl
