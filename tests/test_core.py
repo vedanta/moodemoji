@@ -151,8 +151,9 @@ def test_terms_are_already_normalized():
 
 
 def test_vocabulary_is_exhaustive():
-    assert len(list_moods()) >= 100
-    assert len(list_all_terms()) >= 300
+    assert len(list_moods()) >= 350
+    assert len(list_all_terms()) >= 1250
+    assert len(list_categories()) >= 10
 
 
 # --- MoodInterpreter --------------------------------------------------------

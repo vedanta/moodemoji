@@ -23,7 +23,7 @@ There is no linter or formatter configured.
 
 Data and logic are deliberately split across two modules:
 
-- **`moodemoji/data.py`** — the vocabulary, and nothing else. `MOOD_CATEGORIES` is a dict of category → {mood: emoji} (147 canonical moods in 8 categories); `ALIASES` maps synonyms → canonical mood (406 of them).
+- **`moodemoji/data.py`** — the vocabulary, and nothing else. `MOOD_CATEGORIES` is a dict of category → {mood: emoji} (370 canonical moods in 10 categories); `ALIASES` maps synonyms → canonical mood (934 of them), for 1,304 recognized terms in total.
 - **`moodemoji/core.py`** — flattens `MOOD_CATEGORIES` into `MOOD_EMOJIS` at import time, then implements lookup on top of it.
 
 Every lookup goes through the same path: `_normalize()` (lowercase, `_`/`-` → space, strip punctuation, collapse whitespace) → `ALIASES` resolution → `MOOD_EMOJIS` → `UNKNOWN_EMOJI` (🤔). Matching is deliberately **not** fuzzy — `"happpy"` returns 🤔 rather than guessing.
