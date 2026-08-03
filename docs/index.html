@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>moodemoji &mdash; every mood, every emoji</title>
+<meta name="description" content="All 147 moods in the moodemoji Python library. Hover any emoji to see its mood.">
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent: #58a6ff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 48px 24px 72px;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
+          Arial, sans-serif;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; }
+  header { margin-bottom: 48px; }
+  h1 { margin: 0 0 8px; font-size: 32px; letter-spacing: -0.02em; }
+  .tagline { margin: 0 0 20px; color: var(--muted); font-size: 18px; }
+  .stats { color: var(--muted); font-size: 14px; margin: 0 0 20px; }
+  .stats b { color: var(--text); }
+  code {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 6px; padding: 2px 6px; font-size: 14px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  a { color: var(--accent); }
+  h2 {
+    font-size: 15px; text-transform: uppercase; letter-spacing: 0.08em;
+    margin: 40px 0 14px; padding-bottom: 8px;
+    border-bottom: 1px solid var(--border); font-weight: 600;
+  }
+  h2 .count {
+    text-transform: none; letter-spacing: 0; color: var(--muted);
+    font-weight: 400; font-size: 13px; float: right; padding-top: 2px;
+  }
+  .grid {
+    display: grid; gap: 8px;
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  }
+  .tile {
+    position: relative; aspect-ratio: 1; display: flex;
+    align-items: center; justify-content: center;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; cursor: default; outline: none;
+    transition: border-color .12s ease, transform .12s ease;
+  }
+  .emoji { font-size: 26px; line-height: 1; }
+  .tile:hover, .tile:focus {
+    border-color: var(--accent); transform: translateY(-2px); z-index: 3;
+  }
+  /* the mood name, revealed on hover or keyboard focus */
+  .tile::after {
+    content: attr(data-mood);
+    position: absolute; bottom: calc(100% + 8px); left: 50%;
+    transform: translateX(-50%);
+    background: #1f6feb; color: #fff;
+    padding: 5px 9px; border-radius: 6px;
+    font-size: 12px; line-height: 1.2; white-space: nowrap;
+    opacity: 0; pointer-events: none;
+    transition: opacity .12s ease;
+  }
+  .tile:hover::after, .tile:focus::after { opacity: 1; }
+  footer {
+    margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--border);
+    color: var(--muted); font-size: 14px;
+  }
+  @media (max-width: 480px) {
+    body { padding: 32px 16px 56px; }
+    h2 .count { float: none; display: block; padding-top: 4px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>🎭 moodemoji</h1>
+    <p class="tagline">Give it a mood, get an emoji back.</p>
+    <p class="stats">
+      <b>147</b> moods in <b>8</b> categories &middot;
+      <b>553</b> recognized terms once synonyms are counted &middot;
+      hover any tile to see its mood
+    </p>
+    <p><code>pip install moodemoji</code></p>
+  </header>
+
+    <section>
+      <h2>positive <span class="count">25 moods &middot; feeling good</span></h2>
+      <div class="grid">
+        <div class="tile" tabindex="0" data-mood="amused" title="amused"><span class="emoji">😆</span></div>
+        <div class="tile" tabindex="0" data-mood="awestruck" title="awestruck"><span class="emoji">🌟</span></div>
+        <div class="tile" tabindex="0" data-mood="blissful" title="blissful"><span class="emoji">😇</span></div>
+        <div class="tile" tabindex="0" data-mood="cheerful" title="cheerful"><span class="emoji">😃</span></div>
+        <div class="tile" tabindex="0" data-mood="confident" title="confident"><span class="emoji">💯</span></div>
+        <div class="tile" tabindex="0" data-mood="content" title="content"><span class="emoji">🙂</span></div>
+        <div class="tile" tabindex="0" data-mood="delighted" title="delighted"><span class="emoji">😁</span></div>
+        <div class="tile" tabindex="0" data-mood="euphoric" title="euphoric"><span class="emoji">🎆</span></div>
+        <div class="tile" tabindex="0" data-mood="excited" title="excited"><span class="emoji">🤩</span></div>
+        <div class="tile" tabindex="0" data-mood="festive" title="festive"><span class="emoji">🎉</span></div>
+        <div class="tile" tabindex="0" data-mood="giddy" title="giddy"><span class="emoji">🤭</span></div>
+        <div class="tile" tabindex="0" data-mood="grateful" title="grateful"><span class="emoji">🙏</span></div>
+        <div class="tile" tabindex="0" data-mood="happy" title="happy"><span class="emoji">😊</span></div>
+        <div class="tile" tabindex="0" data-mood="hopeful" title="hopeful"><span class="emoji">🌱</span></div>
+        <div class="tile" tabindex="0" data-mood="inspired" title="inspired"><span class="emoji">💡</span></div>
+        <div class="tile" tabindex="0" data-mood="joyful" title="joyful"><span class="emoji">😄</span></div>
+        <div class="tile" tabindex="0" data-mood="lucky" title="lucky"><span class="emoji">🍀</span></div>
+        <div class="tile" tabindex="0" data-mood="motivated" title="motivated"><span class="emoji">🔥</span></div>
+        <div class="tile" tabindex="0" data-mood="optimistic" title="optimistic"><span class="emoji">🌈</span></div>
+        <div class="tile" tabindex="0" data-mood="proud" title="proud"><span class="emoji">🦚</span></div>
+        <div class="tile" tabindex="0" data-mood="radiant" title="radiant"><span class="emoji">✨</span></div>
+        <div class="tile" tabindex="0" data-mood="relieved" title="relieved"><span class="emoji">😮‍💨</span></div>
+        <div class="tile" tabindex="0" data-mood="satisfied" title="satisfied"><span class="emoji">👌</span></div>
+        <div class="tile" tabindex="0" data-mood="thrilled" title="thrilled"><span class="emoji">🎢</span></div>
+        <div class="tile" tabindex="0" data-mood="triumphant" title="triumphant"><span class="emoji">🏆</span></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>negative <span class="count">32 moods &middot; feeling bad</span></h2>
+      <div class="grid">
+        <div class="tile" tabindex="0" data-mood="angry" title="angry"><span class="emoji">😠</span></div>
+        <div class="tile" tabindex="0" data-mood="annoyed" title="annoyed"><span class="emoji">😤</span></div>
+        <div class="tile" tabindex="0" data-mood="anxious" title="anxious"><span class="emoji">😰</span></div>
+        <div class="tile" tabindex="0" data-mood="ashamed" title="ashamed"><span class="emoji">🙈</span></div>
+        <div class="tile" tabindex="0" data-mood="betrayed" title="betrayed"><span class="emoji">🗡️</span></div>
+        <div class="tile" tabindex="0" data-mood="bitter" title="bitter"><span class="emoji">🍋</span></div>
+        <div class="tile" tabindex="0" data-mood="defeated" title="defeated"><span class="emoji">🏳️</span></div>
+        <div class="tile" tabindex="0" data-mood="depressed" title="depressed"><span class="emoji">😔</span></div>
+        <div class="tile" tabindex="0" data-mood="disappointed" title="disappointed"><span class="emoji">😞</span></div>
+        <div class="tile" tabindex="0" data-mood="disgusted" title="disgusted"><span class="emoji">🤢</span></div>
+        <div class="tile" tabindex="0" data-mood="envious" title="envious"><span class="emoji">🫤</span></div>
+        <div class="tile" tabindex="0" data-mood="frustrated" title="frustrated"><span class="emoji">😣</span></div>
+        <div class="tile" tabindex="0" data-mood="furious" title="furious"><span class="emoji">🤬</span></div>
+        <div class="tile" tabindex="0" data-mood="grieving" title="grieving"><span class="emoji">🥀</span></div>
+        <div class="tile" tabindex="0" data-mood="guilty" title="guilty"><span class="emoji">😓</span></div>
+        <div class="tile" tabindex="0" data-mood="heartbroken" title="heartbroken"><span class="emoji">💔</span></div>
+        <div class="tile" tabindex="0" data-mood="hopeless" title="hopeless"><span class="emoji">🕳️</span></div>
+        <div class="tile" tabindex="0" data-mood="horrified" title="horrified"><span class="emoji">😧</span></div>
+        <div class="tile" tabindex="0" data-mood="insecure" title="insecure"><span class="emoji">🫥</span></div>
+        <div class="tile" tabindex="0" data-mood="irritated" title="irritated"><span class="emoji">😖</span></div>
+        <div class="tile" tabindex="0" data-mood="jealous" title="jealous"><span class="emoji">🐍</span></div>
+        <div class="tile" tabindex="0" data-mood="miserable" title="miserable"><span class="emoji">😩</span></div>
+        <div class="tile" tabindex="0" data-mood="numb" title="numb"><span class="emoji">🫠</span></div>
+        <div class="tile" tabindex="0" data-mood="overwhelmed" title="overwhelmed"><span class="emoji">😵</span></div>
+        <div class="tile" tabindex="0" data-mood="panicked" title="panicked"><span class="emoji">😳</span></div>
+        <div class="tile" tabindex="0" data-mood="regretful" title="regretful"><span class="emoji">😥</span></div>
+        <div class="tile" tabindex="0" data-mood="resentful" title="resentful"><span class="emoji">😾</span></div>
+        <div class="tile" tabindex="0" data-mood="sad" title="sad"><span class="emoji">😢</span></div>
+        <div class="tile" tabindex="0" data-mood="scared" title="scared"><span class="emoji">😨</span></div>
+        <div class="tile" tabindex="0" data-mood="stressed" title="stressed"><span class="emoji">😫</span></div>
+        <div class="tile" tabindex="0" data-mood="terrified" title="terrified"><span class="emoji">😱</span></div>
+        <div class="tile" tabindex="0" data-mood="worried" title="worried"><span class="emoji">😟</span></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>energy <span class="count">14 moods &middot; how much gas is in the tank</span></h2>
+      <div class="grid">
+        <div class="tile" tabindex="0" data-mood="alert" title="alert"><span class="emoji">👀</span></div>
+        <div class="tile" tabindex="0" data-mood="burnt out" title="burnt out"><span class="emoji">🕯️</span></div>
+        <div class="tile" tabindex="0" data-mood="drained" title="drained"><span class="emoji">🪫</span></div>
+        <div class="tile" tabindex="0" data-mood="energized" title="energized"><span class="emoji">⚡</span></div>
+        <div class="tile" tabindex="0" data-mood="exhausted" title="exhausted"><span class="emoji">😪</span></div>
+        <div class="tile" tabindex="0" data-mood="hyper" title="hyper"><span class="emoji">🚀</span></div>
+        <div class="tile" tabindex="0" data-mood="lazy" title="lazy"><span class="emoji">🦥</span></div>
+        <div class="tile" tabindex="0" data-mood="refreshed" title="refreshed"><span class="emoji">🚿</span></div>
+        <div class="tile" tabindex="0" data-mood="rested" title="rested"><span class="emoji">🛌</span></div>
+        <div class="tile" tabindex="0" data-mood="restless" title="restless"><span class="emoji">🌀</span></div>
+        <div class="tile" tabindex="0" data-mood="sleepy" title="sleepy"><span class="emoji">💤</span></div>
+        <div class="tile" tabindex="0" data-mood="sluggish" title="sluggish"><span class="emoji">🐌</span></div>
+        <div class="tile" tabindex="0" data-mood="tired" title="tired"><span class="emoji">😴</span></div>
+        <div class="tile" tabindex="0" data-mood="wired" title="wired"><span class="emoji">☕</span></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>social <span class="count">16 moods &middot; feelings about other people</span></h2>
+      <div class="grid">
+        <div class="tile" tabindex="0" data-mood="affectionate" title="affectionate"><span class="emoji">😘</span></div>
+        <div class="tile" tabindex="0" data-mood="appreciated" title="appreciated"><span class="emoji">💐</span></div>
+        <div class="tile" tabindex="0" data-mood="awkward" title="awkward"><span class="emoji">😬</span></div>
+        <div class="tile" tabindex="0" data-mood="embarrassed" title="embarrassed"><span class="emoji">😅</span></div>
+        <div class="tile" tabindex="0" data-mood="flirty" title="flirty"><span class="emoji">😉</span></div>
+        <div class="tile" tabindex="0" data-mood="friendly" title="friendly"><span class="emoji">🤝</span></div>
+        <div class="tile" tabindex="0" data-mood="introverted" title="introverted"><span class="emoji">🐚</span></div>
+        <div class="tile" tabindex="0" data-mood="lonely" title="lonely"><span class="emoji">🥺</span></div>
+        <div class="tile" tabindex="0" data-mood="love" title="love"><span class="emoji">❤️</span></div>
+        <div class="tile" tabindex="0" data-mood="loved" title="loved"><span class="emoji">🥰</span></div>
+        <div class="tile" tabindex="0" data-mood="outgoing" title="outgoing"><span class="emoji">🗣️</span></div>
+        <div class="tile" tabindex="0" data-mood="protective" title="protective"><span class="emoji">🛡️</span></div>
+        <div class="tile" tabindex="0" data-mood="shy" title="shy"><span class="emoji">🫣</span></div>
+        <div class="tile" tabindex="0" data-mood="supported" title="supported"><span class="emoji">🫂</span></div>
+        <div class="tile" tabindex="0" data-mood="trusting" title="trusting"><span class="emoji">🤞</span></div>
+        <div class="tile" tabindex="0" data-mood="welcoming" title="welcoming"><span class="emoji">👋</span></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>cognitive <span class="count">17 moods &middot; what your brain is doing</span></h2>
+      <div class="grid">
+        <div class="tile" tabindex="0" data-mood="amazed" title="amazed"><span class="emoji">🤯</span></div>
+        <div class="tile" tabindex="0" data-mood="bored" title="bored"><span class="emoji">🥱</span></div>
+        <div class="tile" tabindex="0" data-mood="clueless" title="clueless"><span class="emoji">🤷</span></div>
+        <div class="tile" tabindex="0" data-mood="confused" title="confused"><span class="emoji">😕</span></div>
+        <div class="tile" tabindex="0" data-mood="creative" title="creative"><span class="emoji">🎨</span></div>
+        <div class="tile" tabindex="0" data-mood="curious" title="curious"><span class="emoji">🤔</span></div>
+        <div class="tile" tabindex="0" data-mood="determined" title="determined"><span class="emoji">💪</span></div>
+        <div class="tile" tabindex="0" data-mood="distracted" title="distracted"><span class="emoji">🦋</span></div>
+        <div class="tile" tabindex="0" data-mood="enlightened" title="enlightened"><span class="emoji">🧘</span></div>
+        <div class="tile" tabindex="0" data-mood="focused" title="focused"><span class="emoji">🎯</span></div>
+        <div class="tile" tabindex="0" data-mood="forgetful" title="forgetful"><span class="emoji">🌫️</span></div>
+        <div class="tile" tabindex="0" data-mood="indecisive" title="indecisive"><span class="emoji">🤨</span></div>
+        <div class="tile" tabindex="0" data-mood="overthinking" title="overthinking"><span class="emoji">🌪️</span></div>
+        <div class="tile" tabindex="0" data-mood="shocked" title="shocked"><span class="emoji">😮</span></div>
+        <div class="tile" tabindex="0" data-mood="skeptical" title="skeptical"><span class="emoji">🧐</span></div>
+        <div class="tile" tabindex="0" data-mood="surprised" title="surprised"><span class="emoji">😲</span></div>
+        <div class="tile" tabindex="0" data-mood="thoughtful" title="thoughtful"><span class="emoji">💭</span></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>physical <span class="count">15 moods &middot; what your body is doing</span></h2>
+      <div class="grid">
+        <div class="tile" tabindex="0" data-mood="achy" title="achy"><span class="emoji">🤕</span></div>
+        <div class="tile" tabindex="0" data-mood="clean" title="clean"><span class="emoji">🧼</span></div>
+        <div class="tile" tabindex="0" data-mood="cold" title="cold"><span class="emoji">🥶</span></div>
+        <div class="tile" tabindex="0" data-mood="dizzy" title="dizzy"><span class="emoji">😵‍💫</span></div>
+        <div class="tile" tabindex="0" data-mood="full" title="full"><span class="emoji">😋</span></div>
+        <div class="tile" tabindex="0" data-mood="healthy" title="healthy"><span class="emoji">💚</span></div>
+        <div class="tile" tabindex="0" data-mood="hot" title="hot"><span class="emoji">🥵</span></div>
+        <div class="tile" tabindex="0" data-mood="hungry" title="hungry"><span class="emoji">🍽️</span></div>
+        <div class="tile" tabindex="0" data-mood="nauseous" title="nauseous"><span class="emoji">🤮</span></div>
+        <div class="tile" tabindex="0" data-mood="sick" title="sick"><span class="emoji">🤒</span></div>
+        <div class="tile" tabindex="0" data-mood="sore" title="sore"><span class="emoji">🩹</span></div>
+        <div class="tile" tabindex="0" data-mood="strong" title="strong"><span class="emoji">🦾</span></div>
+        <div class="tile" tabindex="0" data-mood="sweaty" title="sweaty"><span class="emoji">💦</span></div>
+        <div class="tile" tabindex="0" data-mood="thirsty" title="thirsty"><span class="emoji">🥤</span></div>
+        <div class="tile" tabindex="0" data-mood="weak" title="weak"><span class="emoji">🫨</span></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>playful <span class="count">13 moods &middot; being a menace</span></h2>
+      <div class="grid">
+        <div class="tile" tabindex="0" data-mood="adventurous" title="adventurous"><span class="emoji">🧗</span></div>
+        <div class="tile" tabindex="0" data-mood="cheeky" title="cheeky"><span class="emoji">😜</span></div>
+        <div class="tile" tabindex="0" data-mood="cool" title="cool"><span class="emoji">😎</span></div>
+        <div class="tile" tabindex="0" data-mood="dramatic" title="dramatic"><span class="emoji">🎭</span></div>
+        <div class="tile" tabindex="0" data-mood="goofy" title="goofy"><span class="emoji">🤡</span></div>
+        <div class="tile" tabindex="0" data-mood="mischievous" title="mischievous"><span class="emoji">😈</span></div>
+        <div class="tile" tabindex="0" data-mood="nerdy" title="nerdy"><span class="emoji">🤓</span></div>
+        <div class="tile" tabindex="0" data-mood="rebellious" title="rebellious"><span class="emoji">🤘</span></div>
+        <div class="tile" tabindex="0" data-mood="sarcastic" title="sarcastic"><span class="emoji">🙃</span></div>
+        <div class="tile" tabindex="0" data-mood="silly" title="silly"><span class="emoji">🤪</span></div>
+        <div class="tile" tabindex="0" data-mood="smug" title="smug"><span class="emoji">😏</span></div>
+        <div class="tile" tabindex="0" data-mood="teasing" title="teasing"><span class="emoji">😝</span></div>
+        <div class="tile" tabindex="0" data-mood="wild" title="wild"><span class="emoji">🤠</span></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>neutral <span class="count">15 moods &middot; level, in-between states</span></h2>
+      <div class="grid">
+        <div class="tile" tabindex="0" data-mood="balanced" title="balanced"><span class="emoji">⚖️</span></div>
+        <div class="tile" tabindex="0" data-mood="blank" title="blank"><span class="emoji">😶</span></div>
+        <div class="tile" tabindex="0" data-mood="busy" title="busy"><span class="emoji">🐝</span></div>
+        <div class="tile" tabindex="0" data-mood="calm" title="calm"><span class="emoji">😌</span></div>
+        <div class="tile" tabindex="0" data-mood="cautious" title="cautious"><span class="emoji">🚧</span></div>
+        <div class="tile" tabindex="0" data-mood="indifferent" title="indifferent"><span class="emoji">🫰</span></div>
+        <div class="tile" tabindex="0" data-mood="meh" title="meh"><span class="emoji">😐</span></div>
+        <div class="tile" tabindex="0" data-mood="mellow" title="mellow"><span class="emoji">🍃</span></div>
+        <div class="tile" tabindex="0" data-mood="nostalgic" title="nostalgic"><span class="emoji">📻</span></div>
+        <div class="tile" tabindex="0" data-mood="okay" title="okay"><span class="emoji">👍</span></div>
+        <div class="tile" tabindex="0" data-mood="patient" title="patient"><span class="emoji">⏳</span></div>
+        <div class="tile" tabindex="0" data-mood="peaceful" title="peaceful"><span class="emoji">☮️</span></div>
+        <div class="tile" tabindex="0" data-mood="pensive" title="pensive"><span class="emoji">🌙</span></div>
+        <div class="tile" tabindex="0" data-mood="quiet" title="quiet"><span class="emoji">🤫</span></div>
+        <div class="tile" tabindex="0" data-mood="serene" title="serene"><span class="emoji">🕊️</span></div>
+      </div>
+    </section>
+
+  <footer>
+    Generated from the library's own vocabulary &middot;
+    <a href="https://github.com/vedanta/moodemoji">GitHub</a> &middot;
+    <a href="https://pypi.org/project/moodemoji/">PyPI</a>
+  </footer>
+</div>
+</body>
+</html>
