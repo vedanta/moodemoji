@@ -21,14 +21,36 @@ There is no linter or formatter configured.
 
 ## Architecture
 
-Everything lives in `moodemoji/core.py`, built around one module-level dict, `MOOD_EMOJIS`. Two APIs wrap it:
+Data and logic are deliberately split across two modules:
 
-- Functional: `mood_to_emoji(mood)`, `list_moods()`
-- Class-based: `MoodInterpreter`, which holds a `default_mood` and offers `get_emoji()` / `set_mood()` / `get_supported_moods()`
+- **`moodemoji/data.py`** — the vocabulary, and nothing else. `MOOD_CATEGORIES` is a dict of category → {mood: emoji} (147 canonical moods in 8 categories); `ALIASES` maps synonyms → canonical mood (406 of them).
+- **`moodemoji/core.py`** — flattens `MOOD_CATEGORIES` into `MOOD_EMOJIS` at import time, then implements lookup on top of it.
 
-Both lowercase the input and fall back to 🤔 for unknown moods. Adding a mood means adding one entry to `MOOD_EMOJIS` — both APIs pick it up automatically. Anything meant to be public must be re-exported from `moodemoji/__init__.py`; tests and the README import from the package root, never from `moodemoji.core`.
+Every lookup goes through the same path: `_normalize()` (lowercase, `_`/`-` → space, strip punctuation, collapse whitespace) → `ALIASES` resolution → `MOOD_EMOJIS` → `UNKNOWN_EMOJI` (🤔). Matching is deliberately **not** fuzzy — `"happpy"` returns 🤔 rather than guessing.
 
-Note: `core.py` currently defines `mood_to_emoji` and `list_moods` twice (identical bodies, the later pair wins). If you edit either function, edit both definitions or delete the duplicates.
+Two public APIs sit on that: functional (`mood_to_emoji`, `list_moods`, `list_all_terms`, `list_categories`) and class-based (`MoodInterpreter`). Anything public must be re-exported from `moodemoji/__init__.py`; tests and the README import from the package root, never from `moodemoji.core`.
+
+### Editing the vocabulary
+
+Add a mood as one entry in the appropriate `MOOD_CATEGORIES` category; add a synonym as one entry in `ALIASES`. The whole API picks up both automatically. Four invariants are enforced by tests in `tests/test_core.py` — breaking one fails the suite:
+
+- No emoji is reused across canonical moods (if two moods want the same emoji, make one an alias of the other).
+- Every `ALIASES` value is an existing canonical mood.
+- No term is both canonical and an alias.
+- Every term is already in normalized form (lowercase, no punctuation, single spaces).
+
+`list_moods()` returns canonical moods only; synonyms are reachable via `mood_to_emoji()` and `list_all_terms()`.
+
+## Backwards compatibility
+
+`0.1.1` is published on PyPI, so a few things are contracts rather than implementation details:
+
+- The seven original pairs — `happy 😊 · sad 😢 · angry 😠 · excited 🤩 · tired 😴 · love ❤️ · confused 😕` — must not change.
+- The 🤔 fallback for unrecognized input.
+- `mood_to_emoji`, `list_moods`, `MoodInterpreter` and their signatures. `list_moods()` gained an optional `category` argument; the no-argument call must keep working.
+- `MOOD_EMOJIS` stays importable from `moodemoji.core` even though it's now derived.
+
+The first three tests in `tests/test_core.py` are the original `0.1.x` tests, kept verbatim as a regression guard. Don't rewrite them.
 
 ## Releasing
 
