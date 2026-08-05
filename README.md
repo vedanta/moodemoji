@@ -203,6 +203,8 @@ mood_to_emoji("happpy")   # '🤔'  not '😊'
 
 Every core mood, its emoji, and a few of the synonyms that map to it. Synonyms are shown in `code style`; where a mood has more than four, the rest are trimmed with `…`.
 
+<!-- BEGIN GENERATED: mood tables — edit moodemoji/data.py, then run tools/build_docs.py -->
+
 ### `positive` — feeling good (48 moods)
 
 | Emoji | Mood | Also accepts |
@@ -622,6 +624,8 @@ Every core mood, its emoji, and a few of the synonyms that map to it. Synonyms a
 | 🏔️ | `solitude` | `alone by choice`, `happy alone` |
 | 🧎 | `surrendered` | `letting go entirely`, `surrender` |
 | 🕉️ | `transcendent` | `beyond myself`, `transcendence` |
+
+<!-- END GENERATED: mood tables -->
 
 ---
 

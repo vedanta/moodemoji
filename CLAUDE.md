@@ -41,6 +41,15 @@ Add a mood as one entry in the appropriate `MOOD_CATEGORIES` category; add a syn
 
 `list_moods()` returns canonical moods only; synonyms are reachable via `mood_to_emoji()` and `list_all_terms()`.
 
+**After editing the vocabulary, regenerate the docs** — the README mood tables (between the `BEGIN/END GENERATED` markers) and `docs/index.html` are both derived from `data.py` and will otherwise go stale:
+
+```bash
+python tools/build_docs.py          # rewrite both
+python tools/build_docs.py --check  # exit 1 if either is out of date
+```
+
+`--check` writes nothing, so it can be wired into CI. If you add a category, add it to `ORDER` and `DESC` in that script too — it refuses to run when they drift from `data.py`.
+
 ## Backwards compatibility
 
 `0.1.1` is published on PyPI, so a few things are contracts rather than implementation details:
